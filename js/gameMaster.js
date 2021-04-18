@@ -121,6 +121,10 @@ function updateViewFromMatrix() {
 function updateStorage() {
   setBoardState(this.matrix);
   setScore(this.score);
+  // If there is nothing back from the method set it to 0;
+  if (getBestSCore() == null) {
+    setBestScore(0);
+  }
   if (this.score > getBestSCore()) {
     setBestScore(this.score);
   }

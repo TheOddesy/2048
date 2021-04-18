@@ -1,0 +1,146 @@
+/*
+The styling for everything above and below the game.
+
+Everything is scalable to smaller screen sizes.
+*/
+
+/* GENERAL -------------------------------------------------------------------- */
+
+:root {
+  --background: #171d23;
+  --text-light-on-color: #c9c9c9;
+  --text-light: #afafaf;
+  --text-dark: #262f38;
+  --text-strong: #009848;
+  --qgreen: #009848;
+  --qgreen-shadow: #00984890;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: var(--background);
+  margin: 0;
+  padding: 0;
+  font-family: Ubuntu, arial, sans-serif;
+}
+
+.container {
+  width: 32rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+a {
+  text-decoration: underline;
+}
+
+/* ABOVE GAME -------------------------------------------------------------------- */
+
+.title {
+  color: var(--background);
+  background-color: var(--qgreen);
+  color: var(--qgreen);
+  background-color: var(--background);
+  font-size: 4rem;
+  width: fit-content;
+  margin: 1rem auto 2rem;
+  border-radius: 0.1rem;
+  padding: 0.2rem 0.8rem;
+}
+
+.title span {
+  color: var(--text-dark);
+}
+
+.above-game {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 var(--gap);
+}
+
+.score-container,
+.best-container,
+.restart-button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--qgreen);
+  border-radius: 0.3rem;
+  border: 0;
+  padding: 0.2rem;
+  min-width: 8rem;
+  width: fit-content;
+  color: var(--text-light-on-color);
+  font-size: 1.2rem;
+  font-weight: 100;
+}
+
+.above-game button {
+  font-family: Ubuntu, sans-serif;
+}
+
+.above-game button:hover {
+  cursor: pointer;
+  box-shadow: 0 0 4px 2px var(--qgreen-shadow);
+}
+
+/* BELOW GAME -------------------------------------------------------------------- */
+
+.below-game {
+  color: var(--text-light);
+  width: 100%;
+  padding: 0 var(--gap);
+}
+
+.below-game a {
+  color: var(--text-light);
+}
+
+.below-game strong {
+  color: var(--text-strong);
+}
+
+a.home-page {
+  color: var(--text-strong);
+  font-weight: 500;
+}
+
+.below-game .dividing-line {
+  height: 0.1rem;
+  width: 100%;
+  border-bottom: 1px solid var(--qgreen);
+}
+
+/* Scale content for screens smaller than 530px ------------------------------- */
+
+@media (max-width: 530px) {
+  .container {
+    max-width: 20rem;
+    padding: 0.5rem;
+  }
+
+  .title {
+    font-size: 3rem;
+    margin: 1rem auto;
+  }
+
+  .above-game {
+    padding: 0;
+  }
+
+  .score-container,
+  .best-container,
+  .restart-button {
+    padding: 0.2rem;
+    min-width: 6rem;
+    font-size: 1rem;
+  }
+
+  .below-game {
+    padding: 0;
+  }
+}

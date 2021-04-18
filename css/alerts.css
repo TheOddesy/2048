@@ -1,0 +1,46 @@
+/*
+The styling for the 3 divs created in gameMessages.js
+They are the same regardless of screen size.
+*/
+
+.message-container {
+  position: absolute;
+  height: calc(100% - (2 * var(--gap)));
+  width: calc(100% - (2 * var(--gap)));
+  top: var(--gap);
+  left: var(--gap);
+  background-color: #00000095;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+}
+
+.message-content {
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  height: fit-content;
+  max-width: 90%;
+  color: var(--text-light);
+  font-size: 3rem;
+  font-weight: 500;
+  z-index: 99;
+}
+
+.new-game-button {
+  font-family: Ubuntu, sans-serif;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  height: fit-content;
+  width: fit-content;
+  border: 0;
+  border-radius: 0.2rem;
+  background-color: var(--text-dark);
+  color: var(--text-light);
+  z-index: 99;
+}
+
+.new-game-button:hover {
+  cursor: pointer;
+}

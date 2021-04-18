@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>2048 Dark Mode</title>
+
+    <link href="./css/style.css" rel="stylesheet" type="text/css" />
+    <link href="./css/game.css" rel="stylesheet" type="text/css" />
+    <link href="./css/alerts.css" rel="stylesheet" type="text/css" />
+
+    <!-- ----------------------------------- -->
+
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- ----------------------------------- -->
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="530" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui"
+    />
+
+    <!-- ----------------------------------- -->
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+  </head>
+
+  <!-- ----------------------------------------------------------- -->
+  <!-- ----------------------------------------------------------- -->
+
+  <body>
+    <div class="container">
+      <!-- ----------------------------------- -->
+      <div class="heading">
+        <h1 class="title">2048 <span>DARK</span></h1>
+      </div>
+
+      <!-- ----------------------------------- -->
+
+      <div class="above-game">
+        <div class="score-container">
+            <div class="score-text">Score</div>
+            <div class="score-value" id="scoreValue">0</div>
+        </div>
+        <div class="best-container">
+            <div class="best-text">Best</div>
+            <div class="best-value" id="bestScoreValue">0</div>
+        </div>
+        <button class="restart-button" onclick="newGame()">New Game</button>
+      </div>
+
+      <!-- ----------------------------------- -->
+      
+      <div id="board-container" class="board-container"></div>
+        
+      <!-- ----------------------------------- -->
+
+      <div class="below-game">
+        <p class="game-explanation">
+            <strong class="important">How to play:</strong> Use your
+            <strong>arrow keys</strong> to move the tiles. When two tiles with the
+            same number touch, they <strong>merge into one!</strong>. 
+            Try to get the covetted <strong>2048</strong> tile!
+        </p>
+        <div class="dividing-line"></div>
+        <p>
+            This game is based on Gabriele Cirullis
+            <a href="https://play2048.co/" target="_blank">2048.</a></br>
+            This version was created by
+            <a class="home-page" href="https://theoddesy.github.io/HomePage/" target="_blank"
+            >Nicolás Salas.</a></br>
+            You can read more about the game 
+            <a href="https://en.wikipedia.org/wiki/2048_(video_game)" target="_blank"
+            >here.</a>        
+        </p>
+      </div>
+    </div>
+    
+
+    <!-- ----------------------------------- -->
+    <script src="./js/gameMaster.js"></script>
+    <script src="./js/localStorage.js"></script>
+    <script src="./js/moveTiles.js"></script>
+    <script src="./js/gameMessages.js"></script>
+  </body>
+
+  <!-- ----------------------------------------------------------- -->
+  <!-- ----------------------------------------------------------- -->
+</html>

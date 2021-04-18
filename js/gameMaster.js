@@ -6,10 +6,6 @@ Enable Swipe on mobile.
 tooltip on newgame button to show that you can also press n to start a new game.
 
 Change/fix moveTiles. Do not add tiles that were added in this "turn".
-
-Change Value names
-Format code
-divide code
 */
 
 // ------------------------------------------------------------------------

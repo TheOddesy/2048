@@ -1,7 +1,7 @@
 // ------------------------------------------------------------------------
 
 /* 
-Retieves the tile at the starting position
+Retrieves the tile at the starting position
 Changes its class and thus changing its ending position.
 Sets it z-index to be higher than the empty tile created in its place.
 Thanks to css transition the tile will "move" to its new position.

@@ -11,10 +11,16 @@ function tileAnimation(rowStart, rowEnd, colStart, colEnd, value) {
   const tile = document.getElementsByClassName(
     "tile" + " position-" + rowStart + "-" + colStart + " value-" + value
   )[0];
-  tile.style.zIndex = 2;
 
-  tile.className =
-    "tile" + " position-" + rowEnd + "-" + colEnd + " value-" + value;
+  // Catches errors when moving very fast.
+  // Doesn't affect gameplay. This is only movement not game state.
+  try {
+    tile.style.zIndex = 2;
+    tile.className =
+      "tile" + " position-" + rowEnd + "-" + colEnd + " value-" + value;
+  } catch (TypeError) {
+    // Do nothing
+  }
 }
 
 // Creates a tile with empty value at the starting position of the movement.

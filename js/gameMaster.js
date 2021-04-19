@@ -12,7 +12,7 @@ Change/fix moveTiles. Do not add tiles that were added in this "turn".
 
 /*
 Initialises a game.
-If thers is a saved game in the local storage create a game from that.
+If there is a saved game in the local storage create a game from that.
 Otherwise create a new empty game.
 */
 window.onload = function () {
@@ -29,37 +29,6 @@ window.onload = function () {
     updateScore();
   } else {
     newGame();
-  }
-};
-
-// Checks so the specified keys do not move the screen while one is playing.
-// prettier-ignore
-window.addEventListener( "keydown",function (e) {
-    if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]
-    .indexOf(e.code) > -1) {e.preventDefault();}},false
-);
-
-window.onkeydown = function (e) {
-  if (e.key === "ArrowUp" || e.key === "w") {
-    if (moveUp()) createTile();
-  } else if (e.key === "ArrowDown" || e.key === "s") {
-    if (moveDown()) createTile();
-  } else if (e.key === "ArrowLeft" || e.key === "a") {
-    if (moveLeft()) createTile();
-  } else if (e.key === "ArrowRight" || e.key === "d") {
-    if (moveRight()) createTile();
-  } else if (e.key === "n") {
-    newGame();
-  }
-
-  if (isGameOver()) {
-  } else {
-    setTimeout(function () {
-      updateViewFromMatrix();
-      updateStorage();
-      updateScore();
-      isGameWon();
-    }, 200);
   }
 };
 
@@ -112,6 +81,39 @@ function updateViewFromMatrix() {
       this.boardElement.appendChild(tile);
     }
   }
+}
+
+// ------------------------------------------------------------------------
+
+/*
+Moves the tiles in the specified direction
+N/n for a new game.
+
+If no movement is done, no new tile is created.
+
+Timeoutfunction so css transition can happen before board is updated.
+Calls for updates on all visuals and checks if game is won or lost.
+*/
+function handleMovement(direction) {
+  if (direction == "Up") {
+    if (moveUp()) createTile();
+  } else if (direction == "Down") {
+    if (moveDown()) createTile();
+  } else if (direction == "Left") {
+    if (moveLeft()) createTile();
+  } else if (direction == "Right") {
+    if (moveRight()) createTile();
+  } else if (direction == "n" || direction == "N") {
+    newGame();
+  }
+
+  setTimeout(function () {
+    updateViewFromMatrix();
+    updateStorage();
+    updateScore();
+    isGameWon();
+    isGameOver();
+  }, 200);
 }
 
 // ------------------------------------------------------------------------

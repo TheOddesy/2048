@@ -35,18 +35,19 @@ function setBlankTile(row, col) {
 Move functions for all 4 directions. Up, Down, Left, Right.
 Checks and adds tiles in the direction given, starting by the tiles nearest the direction.
 More than one pair of tiles can be added in any row or column.
-
 But no tile that has been newly added can be added again in the same turn.
-This functionality doesnt work sometimes. 
 
 This part needs formating and can be better divided into smaller functions.
 This will help with code redability and reduce code structure repetition.
 */
+
 function moveUp() {
   // Variable so we know if to create a new tile after this move
   var tilesHaveMoved = false;
   // Traverse towards the dominant direction.
   for (let col = 0; col < this.colNum; col++) {
+    // Saves if there are any tiles that have been moved this turn for each new column.
+    const movedArray = [];
     for (let row = 0; row < this.rowNum; row++) {
       var currentValue = this.matrix[row][col];
       // If there is a value the way we are heading, otherwise nothing.
@@ -63,11 +64,18 @@ function moveUp() {
 
         // Change the position of where the value should end up
         // depending on its adjecent tiles.
-        if (nextValue == currentValue && nextValue != "") {
+        // Merges with the next cell that has the same value and has not merged this turn.
+        // Otherwise moves in the direction as much as possible.
+        if (
+          nextValue == currentValue &&
+          nextValue != "" &&
+          !movedArray[cellIterator]
+        ) {
           this.matrix[row][col] = "";
           this.matrix[cellIterator][col] = currentValue * 2;
           this.score += currentValue * 2;
           nextRow = cellIterator;
+          movedArray[cellIterator] = true;
         } else if (nextValue == "") {
           this.matrix[row][col] = "";
           this.matrix[0][col] = currentValue;
@@ -92,6 +100,7 @@ function moveUp() {
 function moveDown() {
   var tilesHaveMoved = false;
   for (let col = 0; col < this.colNum; col++) {
+    const movedArray = [];
     for (let row = this.rowNum - 1; row >= 0; row--) {
       var currentValue = this.matrix[row][col];
       if (currentValue != "") {
@@ -104,11 +113,16 @@ function moveDown() {
           nextValue = this.matrix[cellIterator][col];
         }
 
-        if (nextValue == currentValue && nextValue != "") {
+        if (
+          nextValue == currentValue &&
+          nextValue != "" &&
+          !movedArray[cellIterator]
+        ) {
           this.matrix[row][col] = "";
           this.matrix[cellIterator][col] = currentValue * 2;
           this.score += currentValue * 2;
           nextRow = cellIterator;
+          movedArray[cellIterator] = true;
         } else if (nextValue == "") {
           this.matrix[row][col] = "";
           this.matrix[this.rowNum - 1][col] = currentValue;
@@ -132,6 +146,7 @@ function moveDown() {
 function moveLeft() {
   var tilesHaveMoved = false;
   for (let row = 0; row < this.rowNum; row++) {
+    const movedArray = [];
     for (let col = 0; col < this.colNum; col++) {
       var currentValue = this.matrix[row][col];
       if (currentValue != "") {
@@ -144,11 +159,16 @@ function moveLeft() {
           nextValue = this.matrix[row][cellIterator];
         }
 
-        if (nextValue == currentValue && nextValue != "") {
+        if (
+          nextValue == currentValue &&
+          nextValue != "" &&
+          !movedArray[cellIterator]
+        ) {
           this.matrix[row][col] = "";
           this.matrix[row][cellIterator] = currentValue * 2;
           this.score += currentValue * 2;
           nextCol = cellIterator;
+          movedArray[cellIterator] = true;
         } else if (nextValue == "") {
           this.matrix[row][col] = "";
           this.matrix[row][0] = currentValue;
@@ -172,6 +192,7 @@ function moveLeft() {
 function moveRight() {
   var tilesHaveMoved = false;
   for (let row = 0; row < this.rowNum; row++) {
+    const movedArray = [];
     for (let col = this.colNum - 1; col >= 0; col--) {
       var currentValue = this.matrix[row][col];
       if (currentValue != "") {
@@ -184,11 +205,16 @@ function moveRight() {
           nextValue = this.matrix[row][cellIterator];
         }
 
-        if (nextValue == currentValue && nextValue != "") {
+        if (
+          nextValue == currentValue &&
+          nextValue != "" &&
+          !movedArray[cellIterator]
+        ) {
           this.matrix[row][col] = "";
           this.matrix[row][cellIterator] = currentValue * 2;
           this.score += currentValue * 2;
           nextCol = cellIterator;
+          movedArray[cellIterator] = true;
         } else if (nextValue == "") {
           this.matrix[row][col] = "";
           this.matrix[row][this.colNum - 1] = currentValue;

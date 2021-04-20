@@ -3,17 +3,16 @@
 /* 
 Retrieves the tile at the starting position
 Changes its class and thus changing its ending position.
-Sets it z-index to be higher than the empty tile created in its place.
+Sets it z-index to be higher than the empty tile "beneath it"
 Thanks to css transition the tile will "move" to its new position.
 */
 function tileAnimation(rowStart, rowEnd, colStart, colEnd, value) {
-  setBlankTile(rowStart, colStart);
   const tile = document.getElementsByClassName(
     "tile" + " position-" + rowStart + "-" + colStart + " value-" + value
   )[0];
 
   // Catches errors when moving very fast.
-  // Doesn't affect gameplay. This is only movement not game state.
+  // Doesn't affect outcome. This is only movement, not game state.
   try {
     tile.style.zIndex = 2;
     tile.className =
@@ -21,18 +20,6 @@ function tileAnimation(rowStart, rowEnd, colStart, colEnd, value) {
   } catch (TypeError) {
     // Do nothing
   }
-}
-
-// Creates a tile with empty value at the starting position of the movement.
-// Gives it a lower z-index so that its not ontop of the moving tile.
-function setBlankTile(row, col) {
-  const tile = document.createElement("div");
-  tile.setAttribute(
-    "class",
-    "tile" + " position-" + row + "-" + col + " value-"
-  );
-  tile.style.zIndex = 1;
-  this.boardElement.appendChild(tile);
 }
 
 // ------------------------------------------------------------------------

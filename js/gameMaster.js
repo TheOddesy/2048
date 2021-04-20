@@ -66,11 +66,23 @@ function initializeMatrix() {
 Update the screen to show how the matrix has been changed.
 Remove past tiles so only the new ones are in the board.
 Gives tiles the right classes for css styling.
+
+Creates en empty tile before the tile with a value on every position.
+This is for when the tile "on top", the one with a value, is moved.
+Because of troubles in Safari with css transition and z-index.
 */
 function updateViewFromMatrix() {
   this.boardElement.innerHTML = "";
   for (let i = 0; i < this.rowNum; i++) {
     for (let j = 0; j < this.colNum; j++) {
+      //Creates an empty tile on every position.
+      const emptyTile = document.createElement("div");
+      emptyTile.setAttribute(
+        "class",
+        "tile" + " position-" + i + "-" + j + " value-"
+      );
+      this.boardElement.appendChild(emptyTile);
+      // The tile with the correct value
       const tile = document.createElement("div");
       const cellValue = this.matrix[i][j];
       tile.innerHTML = cellValue;
